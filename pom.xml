@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>springboot-01-cache</module>
+		<module>springboot-01-cache-1</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
