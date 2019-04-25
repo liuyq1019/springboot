@@ -29,34 +29,35 @@ public class DruidConfig {
 	
 	
 	
-	@Bean
+	@ConfigurationProperties(prefix = "spring.datasource")
+	@Bean(destroyMethod = "close",initMethod = "init")
 	public DataSource druid() {
 		DruidDataSource datasource = new DruidDataSource();
-        datasource.setUrl(druidDataSourceProperties.getUrl());
-        datasource.setUsername(druidDataSourceProperties.getUsername());
-        datasource.setPassword(druidDataSourceProperties.getPassword());
-        datasource.setDriverClassName(druidDataSourceProperties.getDriverClassName());
-
-        //configuration
-        datasource.setInitialSize(druidDataSourceProperties.getInitialSize());
-        datasource.setMinIdle(druidDataSourceProperties.getMinIdle());
-        datasource.setMaxActive(druidDataSourceProperties.getMaxActive());
-        datasource.setMaxWait(druidDataSourceProperties.getMaxWait());
-        datasource.setTimeBetweenEvictionRunsMillis(druidDataSourceProperties.getTimeBetweenEvictionRunsMillis());
-        datasource.setMinEvictableIdleTimeMillis(druidDataSourceProperties.getMinEvictableIdleTimeMillis());
-        datasource.setValidationQuery(druidDataSourceProperties.getValidationQuery());
-        datasource.setTestWhileIdle(druidDataSourceProperties.isTestWhileIdle());
-        datasource.setTestOnBorrow(druidDataSourceProperties.isTestOnBorrow());
-        datasource.setTestOnReturn(druidDataSourceProperties.isTestOnReturn());
-        datasource.setPoolPreparedStatements(druidDataSourceProperties.isPoolPreparedStatements());
-        datasource.setMaxPoolPreparedStatementPerConnectionSize(druidDataSourceProperties.getMaxPoolPreparedStatementPerConnectionSize());
-        try {
-            datasource.setFilters(druidDataSourceProperties.getFilters());
-            datasource.init();
-        } catch (SQLException e) {
-            System.err.println("druid configuration initialization filter: " + e);
-        }
-        datasource.setConnectionProperties(druidDataSourceProperties.getConnectionProperties());
+//        datasource.setUrl(druidDataSourceProperties.getUrl());
+//        datasource.setUsername(druidDataSourceProperties.getUsername());
+//        datasource.setPassword(druidDataSourceProperties.getPassword());
+//        datasource.setDriverClassName(druidDataSourceProperties.getDriverClassName());
+//
+//        //configuration
+//        datasource.setInitialSize(druidDataSourceProperties.getInitialSize());
+//        datasource.setMinIdle(druidDataSourceProperties.getMinIdle());
+//        datasource.setMaxActive(druidDataSourceProperties.getMaxActive());
+//        datasource.setMaxWait(druidDataSourceProperties.getMaxWait());
+//        datasource.setTimeBetweenEvictionRunsMillis(druidDataSourceProperties.getTimeBetweenEvictionRunsMillis());
+//        datasource.setMinEvictableIdleTimeMillis(druidDataSourceProperties.getMinEvictableIdleTimeMillis());
+//        datasource.setValidationQuery(druidDataSourceProperties.getValidationQuery());
+//        datasource.setTestWhileIdle(druidDataSourceProperties.isTestWhileIdle());
+//        datasource.setTestOnBorrow(druidDataSourceProperties.isTestOnBorrow());
+//        datasource.setTestOnReturn(druidDataSourceProperties.isTestOnReturn());
+//        datasource.setPoolPreparedStatements(druidDataSourceProperties.isPoolPreparedStatements());
+//        datasource.setMaxPoolPreparedStatementPerConnectionSize(druidDataSourceProperties.getMaxPoolPreparedStatementPerConnectionSize());
+//        try {
+//            datasource.setFilters(druidDataSourceProperties.getFilters());
+//            datasource.init();
+//        } catch (SQLException e) {
+//            System.err.println("druid configuration initialization filter: " + e);
+//        }
+//        datasource.setConnectionProperties(druidDataSourceProperties.getConnectionProperties());
         return datasource;
 	}
 	
