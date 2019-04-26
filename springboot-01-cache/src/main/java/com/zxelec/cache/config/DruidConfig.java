@@ -1,13 +1,11 @@
 package com.zxelec.cache.config;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -24,40 +22,12 @@ import com.zxelec.cache.properties.DruidDataSourceProperties;
 @EnableConfigurationProperties({DruidDataSourceProperties.class})
 public class DruidConfig {
 	
-	@Autowired
-	private DruidDataSourceProperties druidDataSourceProperties;
-	
 	
 	
 	@ConfigurationProperties(prefix = "spring.datasource")
 	@Bean(destroyMethod = "close",initMethod = "init")
 	public DataSource druid() {
 		DruidDataSource datasource = new DruidDataSource();
-//        datasource.setUrl(druidDataSourceProperties.getUrl());
-//        datasource.setUsername(druidDataSourceProperties.getUsername());
-//        datasource.setPassword(druidDataSourceProperties.getPassword());
-//        datasource.setDriverClassName(druidDataSourceProperties.getDriverClassName());
-//
-//        //configuration
-//        datasource.setInitialSize(druidDataSourceProperties.getInitialSize());
-//        datasource.setMinIdle(druidDataSourceProperties.getMinIdle());
-//        datasource.setMaxActive(druidDataSourceProperties.getMaxActive());
-//        datasource.setMaxWait(druidDataSourceProperties.getMaxWait());
-//        datasource.setTimeBetweenEvictionRunsMillis(druidDataSourceProperties.getTimeBetweenEvictionRunsMillis());
-//        datasource.setMinEvictableIdleTimeMillis(druidDataSourceProperties.getMinEvictableIdleTimeMillis());
-//        datasource.setValidationQuery(druidDataSourceProperties.getValidationQuery());
-//        datasource.setTestWhileIdle(druidDataSourceProperties.isTestWhileIdle());
-//        datasource.setTestOnBorrow(druidDataSourceProperties.isTestOnBorrow());
-//        datasource.setTestOnReturn(druidDataSourceProperties.isTestOnReturn());
-//        datasource.setPoolPreparedStatements(druidDataSourceProperties.isPoolPreparedStatements());
-//        datasource.setMaxPoolPreparedStatementPerConnectionSize(druidDataSourceProperties.getMaxPoolPreparedStatementPerConnectionSize());
-//        try {
-//            datasource.setFilters(druidDataSourceProperties.getFilters());
-//            datasource.init();
-//        } catch (SQLException e) {
-//            System.err.println("druid configuration initialization filter: " + e);
-//        }
-//        datasource.setConnectionProperties(druidDataSourceProperties.getConnectionProperties());
         return datasource;
 	}
 	
