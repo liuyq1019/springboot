@@ -1,4 +1,4 @@
-package com.zxelec;
+package com.zxelec.cache;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
+import com.zxelec.cache.mapper.EmployeeMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,6 +23,9 @@ public class Springboot01Cache1ApplicationTests {
 	
 	@Autowired
 	private DruidStatProperties druidStatProperties;
+	
+	@Autowired
+	private EmployeeMapper employeeMapper;
 	
 	@Test
 	public void contextLoads() {
@@ -35,6 +39,8 @@ public class Springboot01Cache1ApplicationTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println(employeeMapper.getEmployeeById(1));;
 	}
 
 }
