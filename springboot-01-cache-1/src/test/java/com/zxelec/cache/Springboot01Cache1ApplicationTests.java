@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
@@ -27,6 +29,13 @@ public class Springboot01Cache1ApplicationTests {
 	@Autowired
 	private EmployeeMapper employeeMapper;
 	
+	@Autowired
+	private RedisTemplate redisTemplate;
+	
+	@Autowired
+	private StringRedisTemplate stringRedisTemplate;
+	
+	
 	@Test
 	public void contextLoads() {
 		try {
@@ -41,6 +50,9 @@ public class Springboot01Cache1ApplicationTests {
 		}
 		
 		System.out.println(employeeMapper.getEmployeeById(1));;
+		
+		System.out.println("==="+stringRedisTemplate.opsForValue().append("op", "你好吗？"));
+		
 	}
 
 }

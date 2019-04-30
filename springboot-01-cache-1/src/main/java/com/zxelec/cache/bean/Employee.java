@@ -1,7 +1,13 @@
 package com.zxelec.cache.bean;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -355013272464406533L;
 	private Integer id;
 	private String lastName;
 	private String email;

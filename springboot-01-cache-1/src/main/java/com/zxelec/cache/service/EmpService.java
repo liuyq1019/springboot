@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zxelec.cache.bean.Employee;
 import com.zxelec.cache.mapper.EmployeeMapper;
 
@@ -18,6 +20,9 @@ public class EmpService {
 	
 	@Autowired
 	private EmployeeMapper employeeMapper;
+	
+	@Autowired
+	private StringRedisTemplate stringRedisTemplate;
 	/**
 	 * 将方法的运行结果进行缓存
 	 * 	cacheNames/value:指定缓存名字
@@ -79,4 +84,16 @@ public class EmpService {
 //		employeeMapper.delEmp(id);
 		logger.info("删除@@CacheEvict数据:"+id);
 	}
+	
+	
+	
+	public Employee getRedisId(Integer id) {
+		Employee emp =  employeeMapper.getEmployeeById(id);
+		String json = JSONObject.toJSONString(emp);
+		logger.info("数据存储到redis:"+id);
+		stringRedisTemplate.opsForValue().set("id_"+id, json);
+		return emp;
+	}
+	
+	
 }
